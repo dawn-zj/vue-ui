@@ -18,12 +18,13 @@ const permission = {
     GenerateRoutes({ commit }) {
       return new Promise(resolve => {
         // 向后端请求路由数据
-        getRouters().then(res => {
+        // getRouters().then(res => {
+          const res = require("@/api/json/router")
           const accessedRoutes = filterAsyncRouter(res.data)
           accessedRoutes.push({ path: '*', redirect: '/404', hidden: true })
           commit('SET_ROUTES', accessedRoutes)
           resolve(accessedRoutes)
-        })
+        // })
       })
     }
   }

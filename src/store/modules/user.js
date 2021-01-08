@@ -36,20 +36,22 @@ const user = {
       const code = userInfo.code
       const uuid = userInfo.uuid
       return new Promise((resolve, reject) => {
-        login(username, password, code, uuid).then(res => {
-          setToken(res.token)
-          commit('SET_TOKEN', res.token)
+        // login(username, password, code, uuid).then(res => {
+          const token = "TestToken"
+          setToken(token)
+          commit('SET_TOKEN', token)
           resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(res => {
+        // getInfo(state.token).then(res => {
+          const res = require("@/api/json/userInfo")
           const user = res.user
           const avatar = user.avatar == "" ? require("@/assets/image/profile.jpg") : process.env.VUE_APP_BASE_API + user.avatar;
           if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
@@ -61,12 +63,12 @@ const user = {
           commit('SET_NAME', user.userName)
           commit('SET_AVATAR', avatar)
           resolve(res)
-        }).catch(error => {
-          reject(error)
-        })
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
-    
+
     // 退出系统
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
