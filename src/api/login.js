@@ -20,7 +20,7 @@ export function login(username, password, code, uuid) {
 export function getInfo() {
   return request({
     // url: '/getInfo',
-    url: 'json/userInfo.json',
+    url: '/json/userInfo.json',
     method: 'get'
   })
 }
@@ -28,8 +28,10 @@ export function getInfo() {
 // 退出方法
 export function logout() {
   return request({
-    url: '/logout',
-    method: 'post'
+    // url: '/logout',
+    // method: 'post'
+    url: '/json/common.json',
+    method: 'get'
   })
 }
 
