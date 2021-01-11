@@ -1,5 +1,6 @@
 import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import axios from "axios";
 
 const user = {
   state: {
@@ -50,8 +51,10 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        // getInfo(state.token).then(res => {
-          const res = require("@/api/json/userInfo")
+        getInfo(state.token).then(res => {
+        // axios.get("json/userInfo.json").then(res => {
+          // const res = require("@/../../../public/json/userInfo.json")
+          console.log(res.code)
           const user = res.user
           const avatar = user.avatar == "" ? require("@/assets/image/profile.jpg") : process.env.VUE_APP_BASE_API + user.avatar;
           if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
@@ -63,9 +66,9 @@ const user = {
           commit('SET_NAME', user.userName)
           commit('SET_AVATAR', avatar)
           resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
+        }).catch(error => {
+          reject(error)
+        })
       })
     },
 

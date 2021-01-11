@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import axios from 'axios'
 
 // 登录方法
 export function login(username, password, code, uuid) {
@@ -17,10 +18,11 @@ export function login(username, password, code, uuid) {
 
 // 获取用户详细信息
 export function getInfo() {
-  return request({
-    url: '/getInfo',
-    method: 'get'
-  })
+  // return request({
+  //   url: 'json/userInfo.json',
+  //   method: 'get'
+  // })
+  return axios.get("json/userInfo.json").then(res => { return res = res.data})
 }
 
 // 退出方法
