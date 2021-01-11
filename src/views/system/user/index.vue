@@ -59,6 +59,11 @@
           <el-table-column label="用户昵称" align="center" prop="nickName" :show-overflow-tooltip="true" />
           <el-table-column label="部门" align="center" prop="dept.deptName" :show-overflow-tooltip="true" />
           <el-table-column label="手机号码" align="center" prop="phonenumber" width="120" />
+          <el-table-column label="性别" align="center">
+            <template slot-scope="scope">
+              <span>{{ getDictValue('sys_user_sex', scope.row.sex) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column label="状态" align="center">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.status" active-value="0" inactive-value="1" @change="handleStatusChange(scope.row)"></el-switch>
@@ -125,14 +130,14 @@
           <el-col :span="12">
             <el-form-item label="用户性别">
               <el-select v-model="form.sex" placeholder="请选择">
-                <el-option v-for="dict in sexOptions" :key="dict.dictValue" :label="dict.dictLabel" :value="dict.dictValue"></el-option>
+                <el-option v-for="dict in sexOptions" :key="dict.dictCode" :label="dict.dictValue" :value="dict.dictCode"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="状态">
               <el-radio-group v-model="form.status">
-                <el-radio v-for="dict in statusOptions" :key="dict.dictValue" :label="dict.dictValue">{{dict.dictLabel}}</el-radio>
+                <el-radio v-for="dict in statusOptions" :key="dict.dictCode" :label="dict.dictValue">{{dict.dictLabel}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -201,6 +206,7 @@ import {
   changeUserStatus,
   importTemplate,
 } from "@/api/system/user";
+import { dict } from "@/common/dicts";
 import { getToken } from "@/utils/auth";
 import { treeselect } from "@/api/system/dept";
 import Treeselect from "@riophae/vue-treeselect";
@@ -238,9 +244,9 @@ export default {
       // 日期范围
       dateRange: [],
       // 状态数据字典
-      statusOptions: [],
+      statusOptions: dict.sys_normal_disable,
       // 性别状态字典
-      sexOptions: [],
+      sexOptions: dict.sys_user_sex,
       // 岗位选项
       postOptions: [],
       // 角色选项
