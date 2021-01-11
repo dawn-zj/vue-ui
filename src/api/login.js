@@ -18,11 +18,11 @@ export function login(username, password, code, uuid) {
 
 // 获取用户详细信息
 export function getInfo() {
-  // return request({
-  //   url: 'json/userInfo.json',
-  //   method: 'get'
-  // })
-  return axios.get("json/userInfo.json").then(res => { return res = res.data})
+  return request({
+    // url: '/getInfo',
+    url: 'json/userInfo.json',
+    method: 'get'
+  })
 }
 
 // 退出方法
