@@ -102,43 +102,54 @@
             "icon": "message",
             "noCache": false
           }
+        }
+      ]
+    },
+    {
+      "name": "Log",
+      "path": "/log",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "日志管理",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "Operlog",
+          "path": "operlog",
+          "hidden": false,
+          "component": "log/operlog/index",
+          "meta": {
+            "title": "操作日志",
+            "icon": "form",
+            "noCache": false
+          }
         },
         {
-          "name": "Log",
-          "path": "log",
+          "name": "Logininfor",
+          "path": "logininfor",
           "hidden": false,
-          "redirect": "noRedirect",
-          "component": "ParentView",
-          "alwaysShow": true,
+          "component": "log/logininfor/index",
           "meta": {
-            "title": "日志管理",
-            "icon": "log",
+            "title": "登录日志",
+            "icon": "logininfor",
             "noCache": false
-          },
-          "children": [
-            {
-              "name": "Operlog",
-              "path": "operlog",
-              "hidden": false,
-              "component": "monitor/operlog/index",
-              "meta": {
-                "title": "操作日志",
-                "icon": "form",
-                "noCache": false
-              }
-            },
-            {
-              "name": "Logininfor",
-              "path": "logininfor",
-              "hidden": false,
-              "component": "monitor/logininfor/index",
-              "meta": {
-                "title": "登录日志",
-                "icon": "logininfor",
-                "noCache": false
-              }
-            }
-          ]
+          }
+        },
+        {
+          "name": "SystemLog",
+          "path": "systemLog",
+          "hidden": false,
+          "component": "log/systemLog/index",
+          "meta": {
+            "title": "系统日志",
+            "icon": "systemLog",
+            "noCache": false
+          }
         }
       ]
     },
