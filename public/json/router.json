@@ -147,7 +147,7 @@
           "component": "log/systemLog/index",
           "meta": {
             "title": "系统日志",
-            "icon": "systemLog",
+            "icon": "textarea",
             "noCache": false
           }
         }
