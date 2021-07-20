@@ -15,10 +15,8 @@ export function getDictValue(dictType, dictCode) {
   let dictValue = ''
     dict[dictType].forEach(item => {
     if (item.dictCode === dictCode){
-      console.log(item.dictValue)
       dictValue = item.dictValue;
     }
   })
-  console.log(dictValue)
   return dictValue
 }
