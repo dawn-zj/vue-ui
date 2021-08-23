@@ -6,8 +6,8 @@
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from '@/views/dashboard/mixins/resize'
-
-const animationDuration = 6000
+import { getCPUChartsData } from '@/utils/chartsData'
+import { getServer } from '@/api/monitor/server'
 
 export default {
   mixins: [resize],
@@ -45,40 +45,10 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
-      this.chart.setOption({
-        // 标题组件
-        title: {
-          show: true,
-          text: 'CPU',
-          x: 'center',
-          textStyle: {
-            fontSize: '15',
-            color: '#ccc'
-          }
-
-        },
-        series: [{
-          type: 'pie',
-          // 饼图的半径，数组的第一项是内半径，第二项是外半径
-          radius: ['40%', '45%'],
-
-          label: {
-            show: true,
-            position: 'center'
-          },
-          data: [
-            { value: 10, name: '10%' },
-            {
-              value: 100,
-              label: {
-                normal: {
-                  show: false
-                }
-              }
-            }
-          ]
-        }]
+      // 向后台请求数据
+      getServer().then(response => {
+        const data = response.data
+        this.chart.setOption(getCPUChartsData(data))
       })
     }
   }
